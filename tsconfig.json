@@ -1,0 +1,12 @@
+{
+   "compilerOptions": {
+      "module": "commonjs",
+      "target": "ES2022",
+      "experimentalDecorators": true,
+      "outDir": "dist",
+      "esModuleInterop": true,
+      "resolveJsonModule": true
+   },
+   "include": ["src", "environment.d.ts"],
+   "exclude": ["node_modules", "dist"]
+}
