@@ -7,18 +7,15 @@ import { RobloxGameService } from "./services/RobloxGameService";
 import { Game } from "./commands/Game";
 import { LikeRatio } from "./commands/LikeRatio";
 import { keepAlive } from "./server";
+import { config } from "dotenv";
 
-require('dotenv').config(); // configures dotenv module to be able to use env variables
+config(); // configures dotenv module to be able to use env variables
 
 let commands: Command[] = []; // commands array
 
 const client = new Client({intents: GatewayIntentBits.GuildMembers | GatewayIntentBits.GuildPresences}); // discord client
 const rest = new REST(); // rest instance
 export const service = new RobloxGameService(process.env.universeId); // RobloxGameService instance
-
-client.login(process.env.token); // logs in to discord with the bot token
-rest.setToken(process.env.token); // sets the rests token to the bot token
-keepAlive(); // starts the server
 
 function registerCommands(...commandsToRegister: (Command | ParentCommand)[]) { // adds the commands to the commands array and updates the bots commands if neccessary
 
@@ -46,7 +43,7 @@ function registerCommands(...commandsToRegister: (Command | ParentCommand)[]) { 
 
    }
 
-   rest.put(Routes.applicationGuildCommands(client.application!.id, "1125512042892234853"), {body: slashCommands});
+   rest.put(Routes.applicationGuildCommands(client.application!.id, process.env.guildId), {body: slashCommands});
 
 }
 
@@ -97,22 +94,18 @@ client.on("interactionCreate", async (interaction: ChatInputCommandInteraction) 
 
    client.on("guildMemberAdd", member => { // fires when a member joins a server
 
-      if (member.guild.id == process.env.guildId) { // checks if the member joined the Shredding Incremental server
-
-         (member.guild.channels.cache.get(process.env.channelId) as TextChannel).send("Everyone welcome <@" + member.id + ">.");
-
-      }
+      (member.guild.channels.cache.get(process.env.channelId) as TextChannel).send("Everyone welcome <@" + member.id + ">.");
 
    });
 
    client.on("guildMemberRemove", member => { // fires when a member leaves a server
 
-      if (member.guild.id == process.env.guildId) { // checks if the member left the Shredding Incremental server
-
-         (member.guild.channels.cache.get(process.env.channelId) as TextChannel).send(member.displayName + " has left the server.");
-
-      }
+      (member.guild.channels.cache.get(process.env.channelId) as TextChannel).send(member.displayName + " has left the server.");
 
    });
 
 });
+
+client.login(process.env.token); // logs in to discord with the bot token
+rest.setToken(process.env.token); // sets the rests token to the bot token
+keepAlive(); // starts the server
