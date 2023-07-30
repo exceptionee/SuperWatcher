@@ -3,7 +3,7 @@
 Super Watcher is a discord bot that gives information about the roblox game named Shredding Incremental.
 ## Environment Variables
 
-To use this bot you must first define some environment variables. First go into the `.env` file and set the following environment variables.
+To use this bot you must first define some environment variables. First create a `.env` file and set the following environment variables.
 
 | Variable    | Description                |
 | :-----------| :------------------------- |

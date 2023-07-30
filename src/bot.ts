@@ -69,7 +69,7 @@ client.on("interactionCreate", async (interaction: ChatInputCommandInteraction) 
    
             try {
    
-               command.onCommandInteraction(interaction);
+               command.onCommandInteraction(interaction).catch();
                
             }
    
