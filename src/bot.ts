@@ -106,6 +106,6 @@ client.on("interactionCreate", async (interaction: ChatInputCommandInteraction) 
 
 });
 
+keepAlive(); // starts the server
 client.login(process.env.token); // logs in to discord with the bot token
 rest.setToken(process.env.token); // sets the rests token to the bot token
-keepAlive(); // starts the server
