@@ -5,12 +5,10 @@ Super Watcher is a discord bot that gives information about the roblox game name
 
 To use this bot you must first define some environment variables. First create a `.env` file and set the following environment variables.
 
-| Variable    | Description                |
-| :-----------| :------------------------- |
-| `token`     | Your discord bot's token.          |
-| `universeId`| The id of the roblox game you want to watch.|
-| `guildId`   | The id of the server you want the bot to use.|
-| `channelId` | The id of the channel you want the bot to send messages.|
+| Variable     | Description                                 |
+| :------------| :-------------------------                  |
+| `TOKEN`      | Your discord bot's token.                   |
+| `UNIVERSE_ID`| The id of the roblox game you want to watch.|
 
 ## Run Locally
 
@@ -41,5 +39,5 @@ Compile the code.
 Start the bot for production.
 
 ```bash
-npm run start:prod
+npm run prod
 ```
