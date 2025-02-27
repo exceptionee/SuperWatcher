@@ -15,7 +15,7 @@ To use this bot you must first define some environment variables. First create a
 Clone the repositry from the command line by running git clone.
 
 ```bash
-  git clone https://github.com/eliasciur/SuperWatcher
+  git clone https://github.com/exceptionee/SuperWatcher
 ```
 
 Go to the project directory.
