@@ -1,18 +1,10 @@
 declare global {
-
-   namespace NodeJS {
-
-      interface ProcessEnv {
-
-         token: string;
-         universeId: string;
-         guildId: string;
-         channelId: string;
-
-      }
-
-   }
-
+  namespace NodeJS {
+    interface ProcessEnv {
+      TOKEN: string;
+      UNIVERSE_ID: string;
+    }
+  }
 }
 
 export {}

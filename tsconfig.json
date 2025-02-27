@@ -1,12 +1,12 @@
 {
-   "compilerOptions": {
-      "module": "commonjs",
-      "target": "ES2022",
-      "experimentalDecorators": true,
-      "outDir": "dist",
-      "esModuleInterop": true,
-      "resolveJsonModule": true
-   },
-   "include": ["src", "environment.d.ts"],
-   "exclude": ["node_modules", "dist"]
+	"compilerOptions": {
+		"module": "ES2022",
+		"target": "ES2022",
+		"esModuleInterop": true,
+		"noEmit": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "bundler"
+	},
+	"include": ["src", "environment.d.ts", "src/commands/likeratio.ts", "src/commands/game.ts"],
+	"exclude": ["node_modules"]
 }

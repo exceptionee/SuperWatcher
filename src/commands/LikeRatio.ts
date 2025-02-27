@@ -1,30 +1,30 @@
-import { ChatInputCommandInteraction } from "discord.js";
-import { Command } from "../typings/Command";
-import { service } from "../bot";
-import { Embed } from "../typings/Embed";
+import { SlashCommandBuilder } from 'discord.js';
+import { Command } from '../structure/Command';
+import { service } from '../utils';
+import { EmbedBuilder } from '@discordjs/builders';
 
-export class LikeRatio extends Command {
+module.exports = {
+  data: new SlashCommandBuilder()
+    .setName('like-ratio')
+    .setDescription('Gives the like to dislike ratio of Shredding Incremental.'),
+  async onCommandInteraction(interaction) {
+    service.fetchVotes().then(data => {
+      const totalVotes = data.upVotes + data.downVotes;
+      const likePercent = Math.round(data.upVotes / totalVotes * 100);
+      const dislikePercent = 100 - likePercent;
 
-   public constructor() {
-
-      super("like-ratio", "Gives the like to dislike ratio of Shredding Incremental.");
-
-   }
-
-   async onCommandInteraction(event: ChatInputCommandInteraction) {
-
-      service.getGameVotes().then(async (data) => {
-
-         let totalVotes = data.upVotes + data.downVotes;
-         let likePercent = Math.round(data.upVotes / totalVotes * 100);
-         let dislikePercent = 100 - likePercent;
-
-         await event.reply({embeds: [new Embed({color: 0xFF3333, title: "Like Ratio"}).addFields(
-            {name: "Likes", value: `${likePercent}%`, inline: true},
-            {name: "Dislikes", value: `${dislikePercent}%`, inline: true})]});
-
+      interaction.reply({
+        embeds: [
+          new EmbedBuilder({
+            color: 0xFF3333,
+            title: 'Like Ratio',
+            fields: [
+              { name: 'Likes', value: `${likePercent}%`, inline: true },
+              { name: 'Dislikes', value: `${dislikePercent}%`, inline: true }
+            ]
+          })
+        ]
       });
-
-   }
-
-}
+    });
+  },
+} satisfies Command;
